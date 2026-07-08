@@ -1,42 +1,51 @@
 function parseOCR(text){
 
-text = text.toUpperCase();
+    text = text.toUpperCase();
 
-const hasil = [];
+    // Hilangkan enter ganda
+    text = text.replace(/\r/g,"");
 
-PRODUCTS.forEach(product=>{
+    const hasil = [];
 
-product.aliases.forEach(alias=>{
+    PRODUCTS.forEach(product=>{
 
-if(text.includes(alias)){
+        let ketemu = false;
 
-let qty = 1;
+        product.aliases.forEach(alias=>{
 
-// cari angka setelah alias
-let regex = new RegExp(alias + "[\\s\\S]{0,80}?(\\d+)");
+            if(ketemu) return;
 
-let match = text.match(regex);
+            if(text.includes(alias)){
 
-if(match){
+                ketemu = true;
 
-qty = Number(match[1]);
+                let qty = 1;
 
-}
+                // Cari angka setelah alias (maks 80 karakter)
+                let after = text.substring(text.indexOf(alias));
 
-hasil.push({
+                let angka = after.match(/\b(\d+)\b/);
 
-nama:product.displayName,
+                if(angka){
 
-qty:qty
+                    qty = Number(angka[1]);
 
-});
+                }
 
-}
+                hasil.push({
 
-});
+                    nama:product.displayName,
 
-});
+                    qty:qty
 
-return hasil;
+                });
+
+            }
+
+        });
+
+    });
+
+    return hasil;
 
 }
