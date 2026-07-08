@@ -49,4 +49,31 @@ scanBtn.addEventListener("click", async () => {
 
     ocrResult.innerText = result.data.text;
 
+const hasil = parseOCR(result.data.text);
+
+document.getElementById("variantResult").innerHTML = "";
+document.getElementById("qtyResult").innerHTML = "";
+document.getElementById("outputResult").innerHTML = "";
+
+if(hasil.length==0){
+
+document.getElementById("variantResult").innerHTML="Tidak ditemukan";
+
+document.getElementById("qtyResult").innerHTML="-";
+
+document.getElementById("outputResult").innerHTML="-";
+
+}else{
+
+document.getElementById("variantResult").innerHTML=
+hasil.map(x=>x.nama).join("<br>");
+
+document.getElementById("qtyResult").innerHTML=
+hasil.map(x=>x.qty).join("<br>");
+
+document.getElementById("outputResult").innerHTML=
+hasil.map(x=>`${x.nama}:${x.qty}`).join("<br>");
+
+}
+
 });
