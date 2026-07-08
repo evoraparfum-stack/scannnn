@@ -1,91 +1,21 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EVORA OCR TEST</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>EVORA OCR TEST</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="style.css">
 
-<style>
-
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f5f7fa;
-}
-
-header{
-    background:#063e46;
-    color:white;
-    padding:20px;
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-}
-
-.container{
-    max-width:700px;
-    margin:auto;
-    padding:20px;
-}
-
-.card{
-    background:white;
-    padding:20px;
-    border-radius:16px;
-    margin-bottom:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
-
-button{
-    background:#063e46;
-    color:white;
-    border:none;
-    padding:15px;
-    border-radius:10px;
-    cursor:pointer;
-    width:100%;
-    font-size:16px;
-}
-
-button:hover{
-    opacity:.9;
-}
-
-img{
-    width:100%;
-    border-radius:12px;
-    display:none;
-    margin-top:15px;
-}
-
-pre{
-    white-space:pre-wrap;
-    background:#f3f3f3;
-    padding:15px;
-    border-radius:10px;
-    min-height:80px;
-}
-
-.result{
-    font-size:18px;
-    font-weight:bold;
-    color:#063e46;
-}
-
-</style>
-
+  <!-- OCR -->
+  <script src="https://unpkg.com/tesseract.js@5/dist/tesseract.min.js"></script>
 </head>
+
 <body>
 
-<header>
-
-EVORA OCR TEST
-
-</header>
-
 <div class="container">
+
+<h1>EVORA OCR TEST</h1>
 
 <div class="card">
 
@@ -96,27 +26,19 @@ accept="image/*">
 
 <img id="preview">
 
-</div>
-
-<div class="card">
-
-<h3>HASIL OCR</h3>
-
-<pre id="ocrResult">
-
-Belum ada scan
-
-</pre>
+<button id="scanBtn">
+🔍 Scan OCR
+</button>
 
 </div>
 
 <div class="card">
 
-<h3>VARIAN</h3>
+<h3>Status</h3>
 
-<div class="result" id="variantResult">
+<div id="status">
 
--
+Belum Scan
 
 </div>
 
@@ -124,31 +46,41 @@ Belum ada scan
 
 <div class="card">
 
-<h3>QTY</h3>
+<h3>OCR Result</h3>
 
-<div class="result" id="qtyResult">
-
--
-
-</div>
+<pre id="ocrResult"></pre>
 
 </div>
 
 <div class="card">
 
-<h3>OUTPUT</h3>
+<h3>Varian</h3>
 
-<div class="result" id="outputResult">
+<div id="variantResult">-</div>
 
--
+</div>
+
+<div class="card">
+
+<h3>Qty</h3>
+
+<div id="qtyResult">-</div>
+
+</div>
+
+<div class="card">
+
+<h3>Output</h3>
+
+<pre id="outputResult"></pre>
 
 </div>
 
 </div>
 
-</div>
-
-<script src="script.js"></script>
+<script src="data.js"></script>
+<script src="parser.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>
